@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, type ReactNode, type CSSProperties } from "react";
+import { useState, useEffect, useCallback, useRef, type ReactNode, type CSSProperties, type MouseEvent as RME } from "react";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -216,6 +216,10 @@ function Slide5Market() {
     { dot: "var(--cyan)", label: "SAM", text: "1.2 millones de estudiantes de educación superior en Chile que enfrentan ramos filtro cada semestre." },
     { dot: "#fff", label: "SOM", text: "Alumnos de carreras STEM en universidades de Santiago y Valparaíso. Nuestro beachhead inicial." },
   ];
+  // Ring sizes — TAM outer, SAM mid, SOM inner with enough space to avoid overlap
+  const OUTER = 280;
+  const MID = 190;
+  const INNER = 110;
   return (
     <>
       <SlideContent>
@@ -223,26 +227,30 @@ function Slide5Market() {
         <Heading>Una oportunidad <Accent>masiva y subatendida</Accent></Heading>
         <Divider />
       </SlideContent>
-      <div className={anim(3)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "3rem", marginTop: "1.2rem" }}>
-        <div style={{ position: "relative", width: 220, height: 220 }}>
-          {[
-            { label: "TAM", size: 220, border: "rgba(28,113,243,.35)", bg: "rgba(28,113,243,.04)", labelColor: "rgba(28,113,243,.85)" },
-            { label: "SAM", size: 160, border: "rgba(26,196,252,.45)", bg: "rgba(26,196,252,.06)", labelColor: "var(--cyan)", sub: "1.2M\nChile" },
-            { label: "SOM", size: 100, border: "var(--cyan)", bg: "rgba(26,196,252,.10)", labelColor: "var(--cyan)", sub: "STEM\nSGO+VPO" },
-          ].map((r, i) => {
-            const offset = (220 - r.size) / 2;
-            return (
-              <div key={r.label} style={{ position: "absolute", top: offset, left: offset, width: r.size, height: r.size, borderRadius: "50%", border: `2px solid ${r.border}`, background: r.bg, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: i === 0 ? "flex-start" : "center", paddingTop: i === 0 ? 10 : 0 }}>
-                <span style={{ fontFamily: "Prompt, sans-serif", fontSize: ".7rem", fontWeight: 700, color: r.labelColor, letterSpacing: ".04em" }}>{r.label}</span>
-                {r.sub && <span style={{ fontSize: ".6rem", color: "rgba(255,255,255,.55)", marginTop: ".1rem", textAlign: "center", lineHeight: 1.3, whiteSpace: "pre-line" }}>{r.sub}</span>}
-              </div>
-            );
-          })}
+      <div className={anim(3)} style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "3.5rem", marginTop: "1rem" }}>
+        {/* Concentric rings */}
+        <div style={{ position: "relative", width: OUTER, height: OUTER, flexShrink: 0 }}>
+          {/* TAM */}
+          <div style={{ position: "absolute", inset: 0, borderRadius: "50%", border: "1.5px solid rgba(28,113,243,.3)", background: "rgba(28,113,243,.03)" }}>
+            <span style={{ position: "absolute", top: 14, left: "50%", transform: "translateX(-50%)", fontFamily: "Prompt, sans-serif", fontSize: ".72rem", fontWeight: 700, color: "rgba(28,113,243,.75)", letterSpacing: ".06em" }}>TAM</span>
+            <span style={{ position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)", fontSize: ".6rem", color: "rgba(255,255,255,.35)", whiteSpace: "nowrap" }}>EdTech Latam</span>
+          </div>
+          {/* SAM */}
+          <div style={{ position: "absolute", top: (OUTER - MID) / 2, left: (OUTER - MID) / 2, width: MID, height: MID, borderRadius: "50%", border: "1.5px solid rgba(26,196,252,.35)", background: "rgba(26,196,252,.04)" }}>
+            <span style={{ position: "absolute", top: 14, left: "50%", transform: "translateX(-50%)", fontFamily: "Prompt, sans-serif", fontSize: ".72rem", fontWeight: 700, color: "var(--cyan)", letterSpacing: ".04em" }}>SAM</span>
+            <span style={{ position: "absolute", bottom: 14, left: "50%", transform: "translateX(-50%)", fontSize: ".58rem", color: "rgba(255,255,255,.4)", whiteSpace: "nowrap" }}>1.2M estudiantes Chile</span>
+          </div>
+          {/* SOM */}
+          <div style={{ position: "absolute", top: (OUTER - INNER) / 2, left: (OUTER - INNER) / 2, width: INNER, height: INNER, borderRadius: "50%", border: "1.5px solid var(--cyan)", background: "rgba(26,196,252,.08)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
+            <span style={{ fontFamily: "Prompt, sans-serif", fontSize: ".75rem", fontWeight: 700, color: "var(--cyan)", letterSpacing: ".04em" }}>SOM</span>
+            <span style={{ fontSize: ".58rem", color: "rgba(255,255,255,.5)", marginTop: 2, textAlign: "center", lineHeight: 1.3 }}>STEM<br />SGO + VPO</span>
+          </div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: ".9rem", maxWidth: 340 }}>
+        {/* Descriptions */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: 360 }}>
           {desc.map((d, i) => (
             <div key={d.label} className={anim(i + 4)} style={{ display: "flex", gap: ".7rem", alignItems: "flex-start" }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: d.dot, marginTop: ".35rem", flexShrink: 0, boxShadow: `0 0 8px ${d.dot}` }} />
+              <div style={{ width: 9, height: 9, borderRadius: "50%", background: d.dot, marginTop: ".3rem", flexShrink: 0, boxShadow: `0 0 8px ${d.dot}` }} />
               <p style={{ fontSize: ".85rem", color: "rgba(255,255,255,.7)", lineHeight: 1.6 }}>
                 <strong style={{ color: "var(--white)" }}>{d.label}</strong> — {d.text}
               </p>
