@@ -472,43 +472,41 @@ function Slide3Solution() {
 }
 
 function Slide4Product() {
-  const miniCards = [
-    { icon: "📅", title: "Agendamiento" },
-    { icon: "💳", title: "Cobros Integrados" },
-    { icon: "🖥️", title: "Aula Virtual" },
-    { icon: "📚", title: "Material de Estudio" },
-  ];
   return (
     <>
       <SlideContent>
         <Label>El Producto</Label>
         <Heading>
-          Modelo <Accent>Híbrido</Accent> de Aprendizaje
+          Tres <Accent>modalidades</Accent> de aprendizaje
         </Heading>
         <Divider />
       </SlideContent>
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: "2rem",
-          maxWidth: 900,
+          gridTemplateColumns: "repeat(3, 1fr)",
+          gap: "1.2rem",
+          maxWidth: 960,
           width: "100%",
           marginTop: "1.2rem",
         }}
       >
-        <ColBlock title="🎙️ Síncrono — Clases en Vivo">
-          Tutorías 1 a 1 o grupales para resolución quirúrgica de dudas. El alumno agenda, paga y
-          entra al aula virtual en minutos.
+        <ColBlock title="🎙️ Clases Particulares en Vivo">
+          Tutorías 1 a 1 para resolución quirúrgica de dudas del ramo. El alumno elige modalidad online o presencial según su preferencia.
           <div style={{ marginTop: "1rem", display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
-            <Badge>1 a 1</Badge> <Badge>Grupal</Badge> <Badge>Online</Badge>
+            <Badge>1 a 1</Badge> <Badge>Online</Badge> <Badge>Presencial</Badge>
           </div>
         </ColBlock>
-        <ColBlock title="🎬 Asíncrono — Micro-learning">
-          Cápsulas de 10–15 min para ramos filtro: Cálculo, Álgebra, Física. Mantienen retención
-          cuando no hay clases en vivo disponibles.
+        <ColBlock title="🎬 Contenido Grabado">
+          Cápsulas de micro-learning, guías y material de estudio disponible 24/7. Mantienen la retención cuando no hay clases en vivo programadas.
           <div style={{ marginTop: "1rem", display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
-            <Badge>24/7</Badge> <Badge>Cálculo</Badge> <Badge>Física</Badge>
+            <Badge>Cápsulas</Badge> <Badge>Guías</Badge> <Badge>24/7</Badge>
+          </div>
+        </ColBlock>
+        <ColBlock title="👥 Clases Masivas">
+          El tutor publica un horario y múltiples alumnos se inscriben. Mayor accesibilidad para el estudiante, mayor alcance para el profesor.
+          <div style={{ marginTop: "1rem", display: "flex", gap: ".5rem", flexWrap: "wrap" }}>
+            <Badge>Grupal</Badge> <Badge>Agenda Pública</Badge> <Badge>Escalable</Badge>
           </div>
         </ColBlock>
       </div>
@@ -517,12 +515,17 @@ function Slide4Product() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1rem",
-          maxWidth: 900,
+          maxWidth: 960,
           width: "100%",
           marginTop: "1.2rem",
         }}
       >
-        {miniCards.map((c) => (
+        {[
+          { icon: "📅", title: "Agendamiento" },
+          { icon: "💳", title: "Cobros Integrados" },
+          { icon: "🖥️", title: "Aula Virtual" },
+          { icon: "📚", title: "Material de Estudio" },
+        ].map((c) => (
           <div
             key={c.title}
             style={{
@@ -696,34 +699,33 @@ function Slide7Business() {
       <SlideContent>
         <Label>Modelo de Negocios</Label>
         <Heading>
-          Monetización <Accent>dual</Accent>
+          <Accent>Service fee</Accent> sobre cada transacción
         </Heading>
         <Divider />
       </SlideContent>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", maxWidth: 860, width: "100%", marginTop: "1.2rem" }}>
-        <ColBlock title="💰 Take Rate — Comisión Transaccional" borderColor="rgba(26,196,252,.35)">
-          Comisión sobre cada clase agendada y pagada en la plataforma. Ingresos directamente
-          proporcionales al volumen de sesiones. Sin costos fijos adicionales.
+        <ColBlock title="🎙️ Clases en Vivo — 15% fee" borderColor="rgba(26,196,252,.35)">
+          Los tutores publican su servicio y fijan su precio. Clasy cobra un 15% adicional al alumno sobre el precio del profesor por cada clase particular o masiva agendada y pagada en la plataforma.
           <div style={{ marginTop: "1.2rem", background: "rgba(26,196,252,.06)", borderRadius: 10, padding: ".8rem 1rem" }}>
             <p style={{ fontSize: ".85rem", color: "var(--cyan)", fontWeight: 600 }}>
-              Revenue compartido · escalabilidad inmediata
+              El tutor recibe el 100% de su precio · Clasy cobra al alumno
             </p>
           </div>
         </ColBlock>
-        <ColBlock title="🎓 Premium — Cápsulas y Material" borderColor="rgba(28,113,243,.35)">
-          Venta de acceso al inventario de cápsulas grabadas y material de estudio. Ingreso
-          recurrente y predecible que no depende de clases en vivo.
+        <ColBlock title="🎬 Contenido Grabado — 25% fee" borderColor="rgba(28,113,243,.35)">
+          Los tutores publican cápsulas, guías y material de estudio. Clasy cobra un 25% sobre el precio del contenido. Mayor margen por la escalabilidad infinita del inventario digital.
           <div style={{ marginTop: "1.2rem", background: "rgba(28,113,243,.06)", borderRadius: 10, padding: ".8rem 1rem" }}>
             <p style={{ fontSize: ".85rem", color: "#7baeff", fontWeight: 600 }}>
-              Ingreso recurrente · alto margen · disponible 24/7
+              Inventario infinito · alto margen · disponible 24/7
             </p>
           </div>
         </ColBlock>
       </div>
       <div style={{ display: "flex", gap: "1.2rem", flexWrap: "wrap", justifyContent: "center", marginTop: "1.8rem" }}>
-        <Stat value="2" label="Flujos de revenue" />
-        <Stat value="~0" label="Costo marginal por sesión" />
-        <Stat value="∞" label="Escalabilidad del inventario" />
+        <Stat value="15%" label="Fee en vivo" />
+        <Stat value="25%" label="Fee grabado" />
+        <Stat value="~0" label="Costo marginal" />
+        <Stat value="∞" label="Escalabilidad" />
       </div>
     </>
   );
@@ -740,24 +742,19 @@ function Slide8Competitive() {
         <Divider />
       </SlideContent>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem", maxWidth: 940, width: "100%", marginTop: "1.5rem" }}>
-        <Card icon="🎓" title="Foco Universitario Exclusivo">
-          Diseñado 100% para el nicho universitario. Entendemos el ciclo académico, los ramos
-          filtro y la urgencia real del estudiante.
+        <Card icon="🌊" title="Efecto de Red">
+          Cada tutor y alumno que se suma hace la plataforma más valiosa para todos. Más oferta atrae más demanda, y viceversa. La red se defiende sola.
         </Card>
-        <Card icon="🛡️" title="Filtro Académico Estricto">
-          Verificación real de credenciales frente a plataformas generalistas sin control de
-          calidad. Solo los mejores tutores pasan.
+        <Card icon="🎯" title="Hiper-especialización Vertical">
+          No hacemos "clases de matemáticas". Hacemos clases particulares del ramo Z en la universidad Y. Oferta segmentada de universidad a curso que nadie más tiene.
         </Card>
-        <Card icon="🔐" title="Seguridad vs. Informalidad">
-          Transacciones custodiadas vs. pagos por WhatsApp. Alumno con garantía, tutor con cobro
-          asegurado. Formalización como moat.
+        <Card icon="⚙️" title="Arquitectura Escalable">
+          Verticalmente especializada pero con una arquitectura diseñada para escalar. El mismo motor replica el modelo en cualquier universidad, facultad o país.
         </Card>
       </div>
       <HighlightBox>
         <p style={{ fontSize: ".92rem", color: "rgba(255,255,255,.85)" }}>
-          <strong style={{ color: "var(--cyan)" }}>Moat:</strong>&nbsp; Datos de rendimiento
-          académico + red de tutores verificados + integración institucional = barrera de entrada
-          creciente con cada sesión.
+          <strong style={{ color: "var(--cyan)" }}>Moat:</strong>&nbsp; Efecto de red + datos de rendimiento académico + oferta hiper-segmentada por universidad y ramo = barrera de entrada creciente con cada sesión agendada.
         </p>
       </HighlightBox>
     </>
@@ -766,17 +763,17 @@ function Slide8Competitive() {
 
 function Slide9Team() {
   const team = [
-    { initial: "A", name: "Adrián", role: "Operaciones & Crecimiento", desc: "Alianzas B2B y liquidez del marketplace. Estrategia GTM y relaciones institucionales." },
-    { initial: "S", name: "Seba", role: "Strategy & Inversiones", desc: "Emprendedor, inversor y asesor estratégico. Visión de negocio y red de contactos clave." },
-    { initial: "M", name: "Mati", role: "CTO · Ingeniería UC", desc: "Arquitectura cloud-native en AWS diseñada para escalar masivamente con costos operativos cercanos a cero." },
-    { initial: "L", name: "Lucas", role: "Eng. Lead · UC", desc: "Desarrollo de producto y plataforma técnica. Ingeniería detrás de la experiencia de usuario." },
+    { initial: "M", name: "Mati", role: "CTO · Co-founder · UC", desc: "Co-creador de Clasy. Ingeniero UC que hacía clases particulares y vivió el problema en carne propia. Lidera la arquitectura cloud-native en AWS." },
+    { initial: "L", name: "Lucas", role: "Eng. Lead · Co-founder · UC", desc: "Co-creador de Clasy. Ingeniero UC y ex-tutor. A diferencia de muchos equipos dev, Mati y Lucas entienden el problema porque lo vivieron como profesores." },
+    { initial: "A", name: "Adrián", role: "Growth & Redes", desc: "Creador de Alianza Emprende Chile, una de las redes de emprendimiento universitario más grandes de LATAM. Infinitos contactos en redes estudiantiles. Emprendedor y líder de producto en startups." },
+    { initial: "S", name: "Seba", role: "Strategy & Inversiones", desc: "Emprendedor, inversor y asesor estratégico. Visión de negocio, red de contactos clave y experiencia en levantamiento de capital." },
   ];
   return (
     <>
       <SlideContent>
-        <Label>Equipo y Tecnología</Label>
+        <Label>Equipo</Label>
         <Heading>
-          Las personas <Accent>detrás del producto</Accent>
+          Founders que <Accent>vivieron el problema</Accent>
         </Heading>
         <Divider />
       </SlideContent>
@@ -794,9 +791,7 @@ function Slide9Team() {
       </div>
       <HighlightBox>
         <p style={{ fontSize: ".88rem", color: "rgba(255,255,255,.75)" }}>
-          Infraestructura{" "}
-          <strong style={{ color: "var(--cyan)" }}>100% cloud-native en AWS</strong> — diseñada
-          para escalar masivamente manteniendo costos operativos cercanos a cero.
+          <strong style={{ color: "var(--cyan)" }}>Founder-problem fit:</strong>&nbsp; Mati y Lucas crearon Clasy porque hacían clases y vivían la fricción del mercado informal. Adrián trae la red de contactos universitarios más grande del país para ejecutar las atomic networks.
         </p>
       </HighlightBox>
     </>
@@ -850,6 +845,9 @@ function NavBtn({
   onClick: () => void;
   disabled: boolean;
 }) {
+  const posStyle: React.CSSProperties =
+    direction === "prev" ? { left: "1.5rem" } : { right: "1.5rem" };
+
   return (
     <button
       onClick={onClick}
@@ -859,7 +857,7 @@ function NavBtn({
         position: "fixed",
         top: "50%",
         transform: "translateY(-50%)",
-        [direction === "prev" ? "left" : "right"]: "1.5rem",
+        ...posStyle,
         width: 52,
         height: 52,
         borderRadius: "50%",
@@ -870,10 +868,11 @@ function NavBtn({
         alignItems: "center",
         justifyContent: "center",
         cursor: disabled ? "default" : "pointer",
-        zIndex: 100,
+        zIndex: 9999,
         color: "rgba(255,255,255,.7)",
         opacity: disabled ? 0.25 : 1,
         transition: "all .2s",
+        pointerEvents: disabled ? "none" : "auto",
       }}
     >
       <svg
@@ -1036,7 +1035,7 @@ export default function Deck() {
       </div>
 
       {/* Slides */}
-      <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
+      <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden", zIndex: 1 }}>
         {SLIDE_CONTENTS.map((content, i) => (
           <Slide key={i} state={slideStates[i]}>
             {content}
@@ -1058,7 +1057,7 @@ export default function Deck() {
           display: "flex",
           alignItems: "center",
           gap: ".5rem",
-          zIndex: 100,
+          zIndex: 9999,
         }}
       >
         {SLIDE_CONTENTS.map((_, i) => (
